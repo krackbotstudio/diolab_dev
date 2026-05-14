@@ -1,0 +1,234 @@
+PRODUCT REQUIREMENTS DOCUMENT (PRD)
+
+Product: Diolab App
+Module Name: OP POS
+Feature Type: Core Module
+Status: Approved
+Priority: High
+
+--------------------------------------------------
+1. OVERVIEW
+--------------------------------------------------
+OP POS is a POS-style Out-Patient (OP) management module for Clinics and Hospitals.
+It enables fast walk-in OP registration, online OP booking, queue management,
+doctor consultation, and basic billing in a single operational interface.
+
+--------------------------------------------------
+2. PROBLEM STATEMENT
+--------------------------------------------------
+Clinics and hospitals rely on manual registers or slow, form-heavy software
+to manage OP patients, leading to long queues, data errors, and poor
+patient experience.
+
+--------------------------------------------------
+3. GOALS & OBJECTIVES
+--------------------------------------------------
+- Enable OP registration in under 30 seconds
+- Provide a POS-like interface for reception staff
+- Allow clinics to share public OP booking links
+- Merge walk-in and online bookings into one queue
+- Improve daily OP throughput
+
+--------------------------------------------------
+4. USER ROLES
+--------------------------------------------------
+1. Reception / Front Desk
+2. Doctor
+3. Clinic / Hospital Admin
+4. Patient (External)
+
+--------------------------------------------------
+5. FEATURE SCOPE
+--------------------------------------------------
+IN SCOPE:
+- OP POS dashboard
+- Walk-in OP registration
+- Online OP booking via clinic link
+- Unified OP queue
+- Doctor consultation panel
+- Basic billing
+- OP tracking for patients
+
+OUT OF SCOPE (PHASE 1):
+- Insurance & corporate billing
+- In-patient management (IP)
+- Advanced accounting
+- Multi-branch hospital ERP
+
+--------------------------------------------------
+6. FUNCTIONAL REQUIREMENTS
+--------------------------------------------------
+
+6.1 OP POS DASHBOARD
+- Live OP queue
+- Auto token generation
+- Status tracking:
+  - Booked
+  - Waiting
+  - In Consultation
+  - Completed
+  - Cancelled
+- Keyboard shortcuts for speed
+
+6.2 WALK-IN OP REGISTRATION
+- Minimal data entry:
+  - Name
+  - Mobile
+  - Age / Gender
+  - Department
+  - Doctor (optional)
+- New / Follow-up visit type
+- Instant token assignment
+
+6.3 ONLINE OP BOOKING
+- Unique public booking link per clinic
+- Patient booking without app install
+- OTP verification (optional)
+- Booking confirmation with token number
+
+6.4 UNIFIED OP QUEUE
+- Merge walk-in and online OPs
+- Manual reorder option (admin)
+- Color-coded status indicators
+
+6.5 DOCTOR CONSULTATION PANEL
+- View assigned OP list
+- Patient details
+- Symptoms & diagnosis
+- Prescription entry
+- Mark consultation completed
+
+6.6 BILLING (POS STYLE)
+- Default consultation fee
+- Payment modes:
+  - Cash
+  - UPI
+  - Unpaid
+- One-click OP completion
+
+6.7 PATIENT OP TRACKING
+- Access via clinic booking link
+- Mobile number + OTP
+- Live queue status
+- Visit history
+
+--------------------------------------------------
+7. USER FLOWS
+--------------------------------------------------
+
+WALK-IN OP FLOW:
+New OP → Token Generated → Queue → Consultation → Billing → Completed
+
+ONLINE OP FLOW:
+Booking Link → OP Booking → Approved → Queue → Consultation → Completed
+
+--------------------------------------------------
+8. UI / UX GUIDELINES
+--------------------------------------------------
+- POS-style single-screen layout
+- Large buttons and readable fonts
+- High contrast for visibility
+- Minimal typing
+- Modal / drawer-based actions
+
+--------------------------------------------------
+9. NON-FUNCTIONAL REQUIREMENTS
+--------------------------------------------------
+- Page load time < 2 seconds
+- Works on low-end systems
+- Responsive (Desktop / Tablet)
+- Secure patient data handling
+- Scalable for peak OP hours
+
+--------------------------------------------------
+10. DATA MODEL (HIGH LEVEL)
+--------------------------------------------------
+
+Clinic
+- clinic_id
+- name
+- slug
+- booking_enabled
+
+Patient
+- patient_id
+- name
+- phone
+- age
+- gender
+
+OP Visit
+- op_id
+- token_number
+- clinic_id
+- doctor_id
+- visit_type
+- source (walk-in / online)
+- status
+- created_at
+
+Prescription
+- prescription_id
+- op_id
+- medicine
+- dosage
+- duration
+- notes
+
+--------------------------------------------------
+11. PERMISSIONS & ACCESS
+--------------------------------------------------
+
+Reception:
+- OP POS dashboard
+- OP registration
+- Queue management
+- Billing
+
+Doctor:
+- Consultation panel only
+
+Admin:
+- Full access
+- Settings & reports
+
+Patient:
+- Booking
+- OP tracking
+
+--------------------------------------------------
+12. MVP ACCEPTANCE CRITERIA
+--------------------------------------------------
+- OP registration completed within 30 seconds
+- Online bookings appear in OP POS queue
+- Doctor can complete consultation
+- OP status updates in real-time
+- Clinics can share booking links publicly
+
+--------------------------------------------------
+13. RISKS & MITIGATION
+--------------------------------------------------
+
+Risk: Staff adoption resistance
+Mitigation: POS-like UX and minimal training
+
+Risk: Peak hour overload
+Mitigation: Daily OP limit and queue control
+
+Risk: Data errors
+Mitigation: Minimal mandatory fields
+
+--------------------------------------------------
+14. FUTURE ENHANCEMENTS
+--------------------------------------------------
+- Time-slot based booking
+- Online payments
+- WhatsApp / SMS reminders
+- OP analytics dashboard
+- E-prescription PDFs
+- Multi-branch clinic support
+
+--------------------------------------------------
+15. INTERNAL POSITIONING
+--------------------------------------------------
+OP POS – Built for speed, not paperwork.

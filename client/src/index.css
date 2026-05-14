@@ -1,0 +1,423 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* LIGHT MODE - Diolab Brand Colors (Bright Cyan/Teal #2DD4BF) */
+:root {
+  --button-outline: rgba(0,0,0, .10);
+  --badge-outline: rgba(0,0,0, .05);
+
+  /* Automatic computation of border around primary / danger buttons */
+  --opaque-button-border-intensity: -8; /* In terms of percentages */
+
+  /* Backgrounds applied on top of other backgrounds when hovered/active */
+  --elevate-1: rgba(0,0,0, .03);
+  --elevate-2: rgba(0,0,0, .08);
+
+  --background: 180 10% 98%;
+  --foreground: 200 20% 15%;
+
+  --border: 180 10% 88%;
+
+  --card: 0 0% 100%;
+  --card-foreground: 200 20% 15%;
+  --card-border: 180 10% 90%;
+
+  --sidebar: 174 25% 97%;
+  --sidebar-foreground: 200 20% 20%;
+  --sidebar-border: 174 15% 88%;
+  --sidebar-primary: 186 100% 45%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 186 50% 94%;
+  --sidebar-accent-foreground: 186 100% 30%;
+  --sidebar-ring: 186 100% 45%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 200 20% 15%;
+  --popover-border: 180 10% 88%;
+
+  /* Diolab Logo Colors: 
+     Cyan: #2DD4BF -> HSL 174 64% 50% (already close to current primary)
+     Bright Cyan: #00E5FF -> HSL 186 100% 50%
+     Blue: #0076CE -> HSL 206 100% 40%
+  */
+  --primary: 186 100% 45%;
+  --primary-foreground: 0 0% 100%;
+
+  --secondary: 180 15% 96%;
+  --secondary-foreground: 200 20% 25%;
+
+  --muted: 180 10% 94%;
+  --muted-foreground: 200 15% 45%;
+
+  --accent: 186 100% 95%;
+  --accent-foreground: 186 100% 30%;
+
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 0 0% 100%;
+
+  --input: 180 10% 85%;
+  --ring: 186 100% 45%;
+  
+  --chart-1: 186 100% 45%;
+  --chart-2: 206 100% 40%;
+  --chart-3: 174 64% 50%;
+  --chart-4: 43 96% 56%;
+  --chart-5: 262 83% 58%;
+
+  /* Brand Gradient: Cyan to Blue */
+  --brand-gradient: linear-gradient(135deg, hsl(186 100% 50%), hsl(206 100% 45%));
+  --brand-gradient-hover: linear-gradient(135deg, hsl(186 100% 45%), hsl(206 100% 40%));
+
+  --font-sans: 'Inter', sans-serif;
+  --font-serif: Georgia, serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --radius: .5rem;
+  --shadow-2xs: 0px 1px 2px 0px rgba(0, 0, 0, 0.03);
+  --shadow-xs: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0px 1px 3px 0px rgba(0, 0, 0, 0.06), 0px 1px 2px -1px rgba(0, 0, 0, 0.06);
+  --shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.06), 0px 1px 2px -1px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0px 4px 6px -1px rgba(0, 0, 0, 0.08), 0px 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0px 10px 15px -3px rgba(0, 0, 0, 0.08), 0px 4px 6px -2px rgba(0, 0, 0, 0.04);
+  --shadow-xl: 0px 20px 25px -5px rgba(0, 0, 0, 0.08), 0px 10px 10px -5px rgba(0, 0, 0, 0.02);
+  --shadow-2xl: 0px 25px 50px -12px rgba(0, 0, 0, 0.15);
+  --tracking-normal: 0em;
+  --spacing: 0.25rem;
+
+  /* Automatically computed borders */
+  --sidebar-primary-border: hsl(var(--sidebar-primary));
+  --sidebar-primary-border: hsl(from hsl(var(--sidebar-primary)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+
+  --sidebar-accent-border: hsl(var(--sidebar-accent));
+  --sidebar-accent-border: hsl(from hsl(var(--sidebar-accent)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+
+  --primary-border: hsl(var(--primary));
+  --primary-border: hsl(from hsl(var(--primary)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+
+  --secondary-border: hsl(var(--secondary));
+  --secondary-border: hsl(from hsl(var(--secondary)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+
+  --muted-border: hsl(var(--muted));
+  --muted-border: hsl(from hsl(var(--muted)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+
+  --accent-border: hsl(var(--accent));
+  --accent-border: hsl(from hsl(var(--accent)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+
+  --destructive-border: hsl(var(--destructive));
+  --destructive-border: hsl(from hsl(var(--destructive)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+}
+
+.dark {
+  --button-outline: rgba(255,255,255, .10);
+  --badge-outline: rgba(255,255,255, .05);
+
+  --opaque-button-border-intensity: 9;
+
+  /* Backgrounds applied on top of other backgrounds when hovered/active */
+  --elevate-1: rgba(255,255,255, .04);
+  --elevate-2: rgba(255,255,255, .09);
+
+  --background: 200 20% 9%;
+  --foreground: 180 15% 95%;
+
+  --border: 200 15% 18%;
+
+  --card: 200 20% 12%;
+  --card-foreground: 180 15% 95%;
+  --card-border: 200 15% 20%;
+
+  --sidebar: 200 22% 10%;
+  --sidebar-foreground: 180 15% 90%;
+  --sidebar-border: 200 15% 18%;
+  --sidebar-primary: 174 84% 50%;
+  --sidebar-primary-foreground: 0 0% 0%;
+  --sidebar-accent: 174 50% 18%;
+  --sidebar-accent-foreground: 174 70% 75%;
+  --sidebar-ring: 174 84% 50%;
+
+  --popover: 200 20% 12%;
+  --popover-foreground: 180 15% 95%;
+  --popover-border: 200 15% 22%;
+
+  --primary: 186 100% 50%;
+  --primary-foreground: 0 0% 0%;
+
+  --secondary: 200 15% 18%;
+  --secondary-foreground: 180 15% 90%;
+
+  --muted: 200 15% 16%;
+  --muted-foreground: 200 10% 60%;
+
+  --accent: 186 50% 18%;
+  --accent-foreground: 186 70% 75%;
+
+  --destructive: 0 62% 50%;
+  --destructive-foreground: 0 0% 100%;
+
+  --input: 200 15% 22%;
+  --ring: 174 84% 50%;
+  
+  --chart-1: 174 84% 55%;
+  --chart-2: 187 85% 55%;
+  --chart-3: 160 75% 50%;
+  --chart-4: 43 96% 60%;
+  --chart-5: 262 83% 62%;
+
+  --shadow-2xs: 0px 1px 2px 0px rgba(0, 0, 0, 0.15);
+  --shadow-xs: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
+  --shadow-sm: 0px 1px 3px 0px rgba(0, 0, 0, 0.25), 0px 1px 2px -1px rgba(0, 0, 0, 0.2);
+  --shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25), 0px 1px 2px -1px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0px 4px 6px -1px rgba(0, 0, 0, 0.3), 0px 2px 4px -1px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0px 10px 15px -3px rgba(0, 0, 0, 0.35), 0px 4px 6px -2px rgba(0, 0, 0, 0.2);
+  --shadow-xl: 0px 20px 25px -5px rgba(0, 0, 0, 0.4), 0px 10px 10px -5px rgba(0, 0, 0, 0.2);
+  --shadow-2xl: 0px 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+/**
+ * Using the elevate system.
+ * Automatic contrast adjustment.
+ */
+@layer utilities {
+
+  /* Hide ugly search cancel button in Chrome until we can style it properly */
+  input[type="search"]::-webkit-search-cancel-button {
+    @apply hidden;
+  }
+
+  /* Placeholder styling for contentEditable div */
+  [contenteditable][data-placeholder]:empty::before {
+    content: attr(data-placeholder);
+    color: hsl(var(--muted-foreground));
+    pointer-events: none;
+  }
+
+  .no-default-hover-elevate {}
+  .no-default-active-elevate {}
+
+  .toggle-elevate::before,
+  .toggle-elevate-2::before {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    inset: 0px;
+    border-radius: inherit;
+    z-index: -1;
+  }
+
+  .toggle-elevate.toggle-elevated::before {
+    background-color: var(--elevate-2);
+  }
+
+  .border.toggle-elevate::before {
+    inset: -1px;
+  }
+
+  .hover-elevate:not(.no-default-hover-elevate),
+  .active-elevate:not(.no-default-active-elevate),
+  .hover-elevate-2:not(.no-default-hover-elevate),
+  .active-elevate-2:not(.no-default-active-elevate) {
+    position: relative;
+    z-index: 0;
+  }
+
+  .hover-elevate:not(.no-default-hover-elevate)::after,
+  .active-elevate:not(.no-default-active-elevate)::after,
+  .hover-elevate-2:not(.no-default-hover-elevate)::after,
+  .active-elevate-2:not(.no-default-active-elevate)::after {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    inset: 0px;
+    border-radius: inherit;
+    z-index: 999;
+  }
+
+  .hover-elevate:hover:not(.no-default-hover-elevate)::after,
+  .active-elevate:active:not(.no-default-active-elevate)::after {
+    background-color: var(--elevate-1);
+  }
+
+  .hover-elevate-2:hover:not(.no-default-hover-elevate)::after,
+  .active-elevate-2:active:not(.no-default-active-elevate)::after {
+    background-color: var(--elevate-2);
+  }
+
+  .border.hover-elevate:not(.no-hover-interaction-elevate)::after,
+  .border.active-elevate:not(.no-active-interaction-elevate)::after,
+  .border.hover-elevate-2:not(.no-hover-interaction-elevate)::after,
+  .border.active-elevate-2:not(.no-active-interaction-elevate)::after,
+  .border.hover-elevate:not(.no-hover-interaction-elevate)::after {
+    inset: -1px;
+  }
+
+  /* Custom scrollbar styling */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted-foreground) / 0.3);
+    border-radius: 3px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.5);
+  }
+
+  /* CTA brand gradient utility */
+  .btn-primary-gradient {
+    background: var(--brand-gradient) !important;
+    color: white !important;
+    border: none !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 14px 0 rgba(0, 229, 255, 0.3) !important;
+  }
+
+  .btn-primary-gradient:hover {
+    background: var(--brand-gradient-hover) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(0, 229, 255, 0.4) !important;
+  }
+
+  .text-gradient {
+    background: var(--brand-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+/* Print-specific styles for reports */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .shadow, .shadow-sm, .shadow-md, .shadow-lg {
+    box-shadow: none !important;
+  }
+
+  @page {
+    margin: 0.5cm;
+    size: A4;
+  }
+
+  table {
+    page-break-inside: avoid;
+  }
+
+  thead {
+    display: table-header-group;
+  }
+
+  p, h1, h2, h3, h4 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  .print\:hidden {
+    display: none !important;
+  }
+
+  .page-break-inside-avoid {
+    page-break-inside: avoid;
+  }
+
+  .page-break-before {
+    page-break-before: always;
+  }
+
+  .page-break-after {
+    page-break-after: always;
+  }
+}
+
+/* Mobile-specific utility classes */
+@media (max-width: 640px) {
+  /* Opt-in touch-friendly button class */
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Improve table responsiveness - opt-in */
+  .mobile-table-scroll {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Stack horizontal layouts vertically on mobile - opt-in */
+  .mobile-stack {
+    flex-direction: column !important;
+  }
+
+  /* Full-width buttons on mobile - opt-in */
+  .mobile-full-width {
+    width: 100% !important;
+  }
+
+  /* Reduced padding on mobile - opt-in */
+  .mobile-compact {
+    padding: 1rem !important;
+  }
+
+  /* Dialog improvements for mobile */
+  [data-radix-dialog-content] {
+    max-height: 90vh !important;
+    max-width: 95vw !important;
+    margin: 0 auto !important;
+  }
+
+  /* Better form inputs on mobile - prevents iOS zoom */
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="number"],
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
+}
+
+input[type="date"] {
+  appearance: none;
+  -webkit-appearance: none;
+  position: relative;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.7;
+  padding: 2px;
+}
+
+.dark input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  opacity: 0.7;
+}
+
+/* Tablet utility classes */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .tablet-cols-2 {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}

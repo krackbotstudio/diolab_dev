@@ -1,0 +1,116 @@
+CONTEXT:
+In the current Diolab app, Samples and Reports exist as separate pages, and there are also multiple similar pages (Reports, Test Reports, Samples) with overlapping functionality. This has resulted in a confusing and broken experience. We need to redesign and re-architect Samples and Reports into a clean, scalable, and intuitive system.
+
+GOAL:
+Create a clean, unified experience where Samples and Reports can exist as a single consolidated workflow page (or tightly connected views), while still clearly separating:
+- Sample lifecycle tracking
+- Test-wise report creation
+- Report finalization and sharing
+
+SAMPLES + REPORTS UX ARCHITECTURE (IMPORTANT):
+
+1. Samples and Reports should be part of ONE unified module, not multiple disconnected pages.
+2. Each Sample is always linked to:
+   - One Patient
+   - One or more Tests
+3. Each Test must have its OWN independent report document.
+4. Do NOT create a combined or summarized report across multiple tests.
+
+CLEAN PAGE STRUCTURE (RECOMMENDED):
+
+- Single main page: “Samples & Reports”
+- Two primary views (tabs or states):
+  a) Samples View (operational tracking)
+  b) Reports View (test-wise report creation & management)
+
+SAMPLES VIEW (Operational):
+- Show sample ID, patient, test name, collection date, status
+- Status flow: Collected → Processing → Completed → Rejected
+- Ability to drill down into a sample to see:
+  - Linked tests
+  - Report status per test (Not Started / In Progress / Finalized)
+
+REPORTS VIEW (Critical):
+
+For EACH test linked to a patient/sample:
+- There must be a SEPARATE report document
+- Each report opens in an editable, document-style layout
+
+REPORT DOCUMENT UI (VERY IMPORTANT):
+
+The report editor must behave like a WORD DOCUMENT / LAB REPORT SHEET, not a simple form.
+
+Layout:
+- Header:
+  - Diagnostic center logo
+  - Lab name, address, contact
+  - Patient details (name, age, gender, ID)
+  - Sample details (type, collected date/time)
+  - Test name (e.g., Complete Blood Count)
+
+- Body:
+  - Table-based layout specific to the selected test
+  - Columns: Investigation | Result | Reference Range | Unit
+  - Highlighting for Low / High / Borderline values
+  - Editable fields for lab technicians to enter results
+
+- Footer:
+  - Instrument details
+  - Interpretation / remarks
+  - Technician and Doctor signature fields
+  - Date, time, page number
+
+REPORT TEMPLATES (CRITICAL REQUIREMENT):
+
+- Every diagnostic test (CBC, Lipid Profile, Thyroid, LFT, etc.) must have its OWN report template.
+- Templates should be data-driven and reusable.
+- When a test is selected:
+  - Load the corresponding report template
+  - Auto-fill patient, lab, and sample details
+- Templates should closely match standard lab report formats (like the attached CBC example).
+
+AI IN REPORT CREATION:
+
+AI should be used intelligently, not blindly:
+- Suggest or generate a report template when a new test is created
+- Help pre-fill structure for new tests
+- Validate entered values against reference ranges
+- Automatically flag abnormal values
+- Optionally generate a short patient-friendly summary
+- NEVER auto-finalize reports without user review
+
+USER CONTROL:
+- Users must be able to manually edit every test value
+- Reports must remain editable until finalized
+- After finalization:
+  - Lock the report
+  - Allow revisions with version history if needed
+
+REPORT SHARING & OUTPUT:
+
+Once a report is finalized (per test):
+- Allow the diagnostic center to:
+  - Download the report as a PDF
+  - Share via WhatsApp (PDF or secure link)
+  - Send via Email (PDF attachment)
+- Track sharing status (sent / failed)
+
+DESIGN & UX REQUIREMENTS:
+
+- Reduce cognitive load for lab staff
+- Avoid duplicate pages with similar names
+- Use clear status indicators
+- Table-based editing for test values
+- Clean, professional, clinical visual style
+- Mobile-friendly report viewing (editing can be desktop-first)
+- Fast navigation between samples → tests → reports
+
+EXPECTED OUTCOME:
+
+- One clear Samples & Reports workflow
+- One report per test, always
+- Document-style report editor
+- Template-driven, AI-assisted report creation
+- Reliable PDF generation and sharing
+
+Please redesign and implement Samples and Reports in Diolab following the above structure and principles.

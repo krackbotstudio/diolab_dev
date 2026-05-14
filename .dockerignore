@@ -1,0 +1,36 @@
+# Dependencies (reinstalled inside Docker)
+node_modules
+
+# Build output (produced inside Docker)
+dist
+
+# User uploads (mounted as volume)
+uploads
+
+# Environment secrets
+.env
+.env.local
+.env.production
+
+# Version control
+.git
+.gitignore
+
+# OS artifacts
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# attached_assets is intentionally NOT excluded.
+# vite.config.ts maps the @assets alias → attached_assets/, and 9+ client
+# files import images from it (logos, hero images, etc.).
+# Excluding it causes Vite to fail with "Cannot find module @assets/..." errors.
+
+# Editor/IDE
+.vscode
+.idea
+*.swp
+*.swo

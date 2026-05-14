@@ -1,0 +1,62 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    # Do NOT bind host ports on Dokploy.
+    # Traefik will route traffic to container port 3000 automatically.
+    expose:
+      - "3000"
+
+    environment:
+      NODE_ENV: production
+      PORT: "3000"
+
+      # ── Database ────────────────────────────────────────────────────────────
+      # At least one must be set. SUPABASE_DATABASE_URL takes precedence
+      # in server/db.ts when both are provided.
+      DATABASE_URL: ${DATABASE_URL:-}
+      SUPABASE_DATABASE_URL: ${SUPABASE_DATABASE_URL:-}
+
+      # ── OpenAI ──────────────────────────────────────────────────────────────
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+
+      # ── Google OAuth ────────────────────────────────────────────────────────
+      # Make sure your Google OAuth redirect URI matches:
+      # https://your-domain.com/api/auth/google/callback
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID:-}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET:-}
+
+      # ── Session ─────────────────────────────────────────────────────────────
+      # Required. Use a long random string
+      SESSION_SECRET: ${SESSION_SECRET}
+
+    volumes:
+      # Persist uploaded files
+      - uploads:/app/uploads
+
+    restart: unless-stopped
+
+    healthcheck:
+      test:
+        - "CMD"
+        - "node"
+        - "-e"
+        - >
+          const http = require('http');
+          const req = http.get('http://localhost:3000/api/auth/me', r => {
+            process.exit(r.statusCode < 500 ? 0 : 1);
+          });
+          req.on('error', () => process.exit(1));
+          req.setTimeout(8000, () => { req.destroy(); process.exit(1); });
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+volumes:
+  uploads:
+    driver: local

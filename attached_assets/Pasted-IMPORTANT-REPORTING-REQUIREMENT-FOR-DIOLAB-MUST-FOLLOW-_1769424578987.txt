@@ -1,0 +1,88 @@
+IMPORTANT REPORTING REQUIREMENT FOR DIOLAB (MUST FOLLOW STRICTLY)
+
+Currently, the system should NOT generate a single summarized report for all tests taken by a patient.
+
+Instead, Diolab must generate a SEPARATE REPORT DOCUMENT for EACH INDIVIDUAL TEST a patient has taken.
+
+For example:
+- If a patient has taken CBC, Lipid Profile, and Thyroid tests,
+  → The system must generate THREE separate report documents (one per test),
+  → Each report must have its own layout, values, reference ranges, and PDF.
+
+REPORT TEMPLATE SYSTEM:
+
+- Each diagnostic test (e.g., CBC, Lipid Profile, LFT, KFT, Thyroid, etc.) must have its OWN predefined report template.
+- Templates should follow standard diagnostic lab formats (similar to the attached CBC report example).
+- Each template must include:
+  - Lab branding (logo, name, address, contact)
+  - Patient details (name, age, gender, patient ID)
+  - Sample details (sample type, collected date/time)
+  - Test name and structured test parameters
+  - Result values
+  - Reference ranges
+  - Units
+  - Highlighting for Low / High / Borderline values
+  - Doctor / Technician signature section
+  - Footer with generation timestamp and page number
+
+REPORT CREATION FLOW (VERY IMPORTANT):
+
+1. A patient is selected.
+2. One or more tests are selected for the patient.
+3. For EACH selected test:
+   - Load the corresponding report template.
+   - Auto-fill patient details, lab details, and test metadata.
+4. Diagnostic center user (lab technician / pathologist) must be able to:
+   - Enter test result values MANUALLY
+   - OR use AI assistance to help fill values or validate ranges
+5. After values are entered:
+   - The system must calculate and flag results as Normal / Low / High / Borderline.
+   - Reference ranges and units must be displayed clearly.
+6. The report must remain EDITABLE until it is finalized.
+7. Once finalized:
+   - Generate a PDF for THAT SPECIFIC TEST ONLY.
+   - Lock the report to prevent accidental edits (unless revision is enabled).
+
+AI ASSISTANCE IN REPORTING:
+
+AI should assist with:
+- Suggesting the correct report template based on the selected test
+- Pre-filling known patient and sample details
+- Validating entered values against reference ranges
+- Automatically flagging abnormal values
+- Generating a short patient-friendly interpretation summary (optional)
+- Helping technicians enter data faster (but NOT auto-publishing without review)
+
+REPORT SHARING & DELIVERY:
+
+For EACH individual test report:
+- Allow the diagnostic center to:
+  - Download the report as a PDF
+  - Share the report via WhatsApp (secure link or PDF)
+  - Send the report via Email (PDF attachment)
+- Sharing must be tracked (sent / failed / viewed if possible)
+
+REVISION & VERSIONING:
+
+- Reports should support revisions.
+- If a report is updated after finalization:
+  - Create a new version
+  - Maintain version history
+  - Clearly mark revised reports
+
+TECHNICAL & UI EXPECTATIONS:
+
+- Report templates should be data-driven and reusable.
+- UI must clearly show:
+  - Which tests have reports generated
+  - Which tests are pending report entry
+  - Which reports are finalized and shared
+- Editing test values should feel like filling a lab report sheet (table-based UI).
+- PDF output must closely match standard diagnostic lab reports like the CBC sample provided.
+
+THIS IS A CRITICAL REQUIREMENT.
+
+Do NOT generate combined or summarized reports across tests.
+Each test must ALWAYS have its own independent report document, template, PDF, and sharing flow.
+
+Ensure this reporting system is fully implemented in Diolab as described above.

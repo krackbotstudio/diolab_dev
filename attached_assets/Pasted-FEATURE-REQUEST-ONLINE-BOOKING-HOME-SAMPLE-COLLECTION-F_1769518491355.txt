@@ -1,0 +1,105 @@
+FEATURE REQUEST: ONLINE BOOKING & HOME SAMPLE COLLECTION FOR DIOLAB
+
+We want to add a new feature to the existing Diolab application that allows diagnostic centers to accept online bookings directly from patients using a branded registration / booking form.
+
+GOAL:
+Enable each diagnostic center using Diolab to generate and share a custom booking link (mini app / web form) branded with their diagnostic center name and logo, which patients can use to book lab services or home sample collection.
+
+BOOKING FORM / MINI APP REQUIREMENTS:
+
+1. Each diagnostic center should have a unique booking URL, for example:
+   - diolab.app/book/<diagnostic-center-id>
+
+2. The booking page must be:
+   - Mobile-first
+   - Simple and fast
+   - No login required for patients
+   - Branded with diagnostic center logo, name, and contact details
+
+PATIENT BOOKING FLOW:
+
+The booking form should allow patients to:
+- Enter personal details:
+  - Name
+  - Age
+  - Gender
+  - Phone number
+- Select one or more tests or health packages
+- Choose service type:
+  - Lab Visit
+  - Home Sample Collection
+- Select preferred date and time slot
+- If Home Collection is selected:
+  - Enter full address
+  - Add location notes (optional)
+- Submit booking request
+
+HOME SAMPLE COLLECTION SUPPORT:
+
+- Home collection must be a first-class option, not an add-on
+- Diagnostic centers should be able to:
+  - Enable or disable home collection
+  - Define home collection charges
+  - View all home collection bookings
+  - Assign collection agents
+  - Track collection status
+
+BACKEND & DATA INTEGRATION:
+
+- All bookings must be stored in the existing Diolab system
+- On booking submission:
+  - Create a new booking record
+  - Create or link a patient profile
+  - Mark booking status as “Pending”
+- Booking statuses:
+  - Pending
+  - Confirmed
+  - Sample Collected
+  - Cancelled
+
+INTERNAL APP INTEGRATION:
+
+- Add a new section in the Diolab app:
+  - “Online Bookings” or “Bookings”
+- Staff should be able to:
+  - View incoming bookings
+  - Convert a booking into:
+    - Patient record
+    - Sample
+    - Bill
+  - Assign home collection agents
+- Bookings should integrate with:
+  - Patients
+  - Billing
+  - Samples & Reports
+
+AI ASSISTANCE (OPTIONAL BUT PREFERRED):
+
+AI can assist by:
+- Suggesting relevant tests or packages to patients during booking
+- Validating booking inputs
+- Predicting peak booking times
+- Helping diagnostic centers plan collections
+
+SECURITY & CONTROL:
+
+- Each booking form must be isolated per diagnostic center
+- Patients should only see data related to that diagnostic center
+- Diagnostic center staff access should remain role-based
+
+UI / UX EXPECTATIONS:
+
+- Booking form should feel like a lightweight app
+- Clear call-to-action buttons
+- Minimal steps (max 2–3 screens)
+- Confirmation message after submission
+- Optional WhatsApp confirmation message to patient
+
+IMPORTANT IMPLEMENTATION NOTE:
+
+This feature must be added cleanly into the existing Diolab architecture and should reuse existing entities like Patients, Tests, Packages, Samples, and Billing wherever possible.
+
+Do NOT build this as a standalone system.
+It must be fully integrated into the current Diolab app.
+
+Please implement this feature following the above requirements.

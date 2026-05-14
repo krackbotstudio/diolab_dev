@@ -1,0 +1,36 @@
+// Define all application routes for sitemap generation
+export const getAllRoutes = (): string[] => {
+  return [
+    '/',
+    '/dashboard',
+    '/patients',
+    '/tests',
+    '/billing',
+    '/samples-reports',
+    '/inventory',
+    '/analytics',
+    '/branches',
+    '/settings',
+    '/bookings',
+    '/op-pos',
+    '/doctor-console',
+    '/consultations',
+    '/hospital-settings',
+    '/medicines',
+    '/medlab-sales',
+    '/pharmacy-orders',
+    '/suppliers',
+    '/staff',
+    '/wards',
+    '/beds',
+    '/admissions',
+    '/icu',
+    '/sign-in',
+    '/sign-up',
+    '/privacy-policy',
+    '/terms-and-conditions',
+    '/affiliates',
+    '/contact',
+    '/about'
+  ];
+};

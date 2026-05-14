@@ -1,0 +1,83 @@
+FEATURE REQUEST: AI REPORT TEMPLATE GENERATION PER TEST CARD (CRITICAL)
+
+In the “Tests & Packages” page of the Diolab app, each diagnostic test is displayed as a card (e.g., CBC, Hemoglobin, Lipid Profile, etc.).
+
+We need to add an AI-powered capability to each test card to generate and manage report templates.
+
+UI / UX REQUIREMENT:
+
+1. On every individual test card, add a clearly visible button:
+   - Label: “AI Report Template” or “Generate Report Template”
+   - Icon: AI / Sparkle / Magic icon
+   - Placement: On the test card header or in the action menu (3-dot / inline)
+
+2. When the AI button is clicked, open a modal or side panel with options:
+   - “Create new report template using AI”
+   - “Regenerate / Improve existing template” (if template already exists)
+   - “Preview template structure”
+
+AI TEMPLATE GENERATION BEHAVIOR:
+
+When “Create report template using AI” is selected:
+- The AI should generate a structured diagnostic report template specific to the selected test.
+- Example:
+  - CBC → Hemoglobin, RBC count, WBC count, Platelet count, Reference ranges, Units
+  - Lipid Profile → Total Cholesterol, LDL, HDL, Triglycerides, etc.
+- The template must follow standard diagnostic lab report formats.
+
+Each AI-generated template must include:
+- Header:
+  - Diagnostic center logo placeholder
+  - Lab name and contact details
+  - Patient information placeholders (name, age, gender, patient ID)
+  - Sample details placeholders
+
+- Body:
+  - Table layout with:
+    - Investigation name
+    - Result (editable)
+    - Reference range
+    - Unit
+  - Support for highlighting Low / High / Borderline values
+
+- Footer:
+  - Instrument details
+  - Interpretation / remarks section
+  - Technician and Doctor signature placeholders
+  - Date, time, and page number placeholders
+
+DATA & STORAGE REQUIREMENTS:
+
+- Once generated, the report template must be saved and linked to that specific test.
+- Each test can have:
+  - One active report template
+  - Optional template versions/history
+- Templates should be reusable across all patients who take that test.
+
+REPORT CREATION FLOW (DOWNSTREAM USAGE):
+
+- When a patient is assigned a test:
+  - Load the saved report template for that test automatically.
+  - Auto-fill patient, lab, and sample details.
+  - Allow lab staff to manually enter test result values.
+- The report should behave like an editable document (word-document style), not a basic form.
+
+AI SHOULD ALSO:
+- Suggest improvements if a template is incomplete
+- Validate structure against standard lab practices
+- Allow regeneration without overwriting existing templates unless confirmed
+
+IMPORTANT CONSTRAINTS:
+
+- AI must NEVER auto-publish or auto-finalize reports.
+- Human users must always review and edit values.
+- Templates must be editable after AI generation.
+
+GOAL:
+
+This AI button should significantly reduce manual effort for diagnostic centers by:
+- Eliminating the need to manually design report layouts
+- Ensuring consistency across reports
+- Speeding up onboarding of new tests
+
+Please implement this AI-powered report template generation feature cleanly, following the above UX, data, and workflow requirements.
