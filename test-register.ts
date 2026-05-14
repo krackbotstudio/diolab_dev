@@ -1,12 +1,12 @@
 import { db } from "./server/db";
 import { users } from "./shared/models/auth";
-import bcrypt from "bcrypt";
+import { hashPassword } from "./server/utils/password";
 
 async function testRegister() {
     try {
         const email = `test-${Date.now()}@example.com`;
         const password = "password123";
-        const hashedPassword = await bcrypt.hash(password, 10);
+        const hashedPassword = await hashPassword(password);
 
         console.log("Attempting to insert user into DB...");
         const [newUser] = await db.insert(users).values({

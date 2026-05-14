@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { db } from "../db";
 import { eq, desc, count, sql } from "drizzle-orm";
-import bcrypt from "bcrypt";
+import { hashPassword, verifyPassword } from "../utils/password";
 import {
   superAdmins,
   cmsActivityLog,
@@ -26,8 +26,6 @@ import {
 } from "@shared/schema";
 
 const router = Router();
-const SALT_ROUNDS = 10;
-
 async function logCmsActivity(
   adminId: string,
   adminEmail: string,
@@ -73,7 +71,7 @@ router.post("/seed", async (req, res) => {
         .limit(1);
 
       if (existing.length === 0) {
-        const hashedPassword = await bcrypt.hash(admin.password, SALT_ROUNDS);
+        const hashedPassword = await hashPassword(admin.password);
         await db.insert(superAdmins).values({
           email: admin.email,
           password: hashedPassword,
@@ -107,7 +105,7 @@ router.post("/login", async (req, res) => {
       return res.status(401).json({ error: "Invalid credentials" });
     }
 
-    const isValid = await bcrypt.compare(password, admin.password);
+    const isValid = await verifyPassword(password, admin.password);
     if (!isValid) {
       return res.status(401).json({ error: "Invalid credentials" });
     }
