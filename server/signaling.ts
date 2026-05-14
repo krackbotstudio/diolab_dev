@@ -1,6 +1,6 @@
 import { Server } from "http";
 import { WebSocketServer, WebSocket } from "ws";
-import { log } from "./index";
+import { log } from "./app";
 
 interface SignalingMessage {
     type: "offer" | "answer" | "ice-candidate" | "join-room" | "ready";
