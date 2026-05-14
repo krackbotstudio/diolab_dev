@@ -103,6 +103,11 @@ export async function registerRoutes(
   app: Express
 ): Promise<Server> {
 
+  // Health check endpoint for uptime/hosting probes
+  app.get("/api/health", (_req, res) => {
+    res.status(200).json({ status: "ok" });
+  });
+
   // Register custom authentication routes
   setupCustomAuth(app);
 
