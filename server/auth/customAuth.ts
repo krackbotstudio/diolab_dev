@@ -1,11 +1,9 @@
 import { Express, RequestHandler } from "express";
-import bcrypt from "bcrypt";
 import { z } from "zod";
 import { db } from "../db";
 import { users } from "@shared/models/auth";
 import { eq, or } from "drizzle-orm";
-
-const SALT_ROUNDS = 10;
+import { hashPassword, verifyPassword } from "../utils/password";
 
 // Validation schemas
 const registerSchema = z.object({
@@ -53,7 +51,7 @@ export function setupCustomAuth(app: Express) {
       }
 
       // Hash password
-      const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS);
+      const hashedPassword = await hashPassword(password);
 
       // Create user
       const [newUser] = await db.insert(users).values({
@@ -125,7 +123,7 @@ export function setupCustomAuth(app: Express) {
       }
 
       // Verify password
-      const isValidPassword = await bcrypt.compare(password, user.password);
+      const isValidPassword = await verifyPassword(password, user.password);
       if (!isValidPassword) {
         return res.status(401).json({ message: "Invalid credentials" });
       }
