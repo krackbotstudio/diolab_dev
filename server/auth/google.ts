@@ -83,9 +83,12 @@ export function setupGoogleAuth(app: Express) {
     passport.deserializeUser(async (id: string, done) => {
         try {
             const [user] = await db.select().from(users).where(eq(users.id, id)).limit(1);
-            done(null, user);
+            done(null, user || false);
         } catch (error) {
-            done(error, null);
+            // Avoid crashing requests when a stale/invalid session cookie is present
+            // or when the backing store has a transient issue.
+            console.error("Deserialize user error:", error);
+            done(null, false);
         }
     });
 
